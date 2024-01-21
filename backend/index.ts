@@ -39,7 +39,7 @@ connectToDatabase(uri, app)
     ) {
       app.use(express.static("../frontend/build"))
       app.get("*", (req, res) => {
-        res.sendFile("../frontend/build/index.html")
+        res.sendFile("/app/frontend/build/index.html")
       })
     }
 
