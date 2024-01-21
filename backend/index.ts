@@ -28,15 +28,6 @@ connectToDatabase(uri, app)
   .then(() => {
     app.use("/api/user", userRouter)
     app.use("/api/profile", quizRouter)
-    if (
-      process.env.NODE_ENV === "production" ||
-      process.env.NODE_ENV === "staging"
-    ) {
-      app.use(express.static("client/build"))
-      app.get("*", (req, res) => {
-        res.sendFile(path.join(__dirname + "/client/build/index.html"))
-      })
-    }
 
     app.listen(PORT, () => {
       console.log(`Server started at http://localhost:${PORT}`)
