@@ -6,6 +6,11 @@ import quizRouter from "./controllers/quiz"
 import dotenv from "dotenv"
 import connectToDatabase from "./services/db"
 import path from "path"
+import { fileURLToPath } from "url"
+import { dirname } from "path"
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
 
 dotenv.config()
 const app = express()
@@ -28,6 +33,15 @@ connectToDatabase(uri, app)
   .then(() => {
     app.use("/api/user", userRouter)
     app.use("/api/profile", quizRouter)
+    if (
+      process.env.NODE_ENV === "production" ||
+      process.env.NODE_ENV === "staging"
+    ) {
+      app.use(express.static("../frontend/build"))
+      app.get("*", (req, res) => {
+        res.sendFile(path.join(__dirname + "/frontend/build/index.html"))
+      })
+    }
 
     app.listen(PORT, () => {
       console.log(`Server started at http://localhost:${PORT}`)
