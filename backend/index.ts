@@ -15,7 +15,19 @@ const __dirname = dirname(__filename)
 dotenv.config()
 const app = express()
 
-app.use(helmet())
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      "default-src": ["'self'"],
+      "script-src": ["'self'"],
+      "style-src": ["'self'", "'unsafe-inline'", "fonts.googleapis.com"],
+      "frame-src": ["'self'"],
+      "font-src": ["'self'", "fonts.googleapis.com", "fonts.gstatic.com"],
+      "img-src": ["'self'", "data:"],
+    },
+    reportOnly: true,
+  })
+)
 app.use(cors())
 app.use(express.json())
 
