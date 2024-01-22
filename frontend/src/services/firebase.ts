@@ -27,7 +27,7 @@ export const signIn = (email: string, password: string) =>
       throw "The username or password provided is invalid, please check and try again."
     }
     console.error(error)
-    throw "There was an error signing in. Please try again later."
+    throw "There was an error signing in. " + error
   })
 
 export const logOut = () => signOut(auth)
