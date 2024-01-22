@@ -26,6 +26,7 @@ export const signIn = (email: string, password: string) =>
     if (error.code === "auth/invalid-credential") {
       throw "The username or password provided is invalid, please check and try again."
     }
+    console.error(error)
     throw "There was an error signing in. Please try again later."
   })
 

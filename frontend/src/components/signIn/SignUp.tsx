@@ -55,7 +55,12 @@ export default function SignUp({ open, setOpen }: SignUpProps) {
   return (
     <div id="modal-container">
       {error && (
-        <Alert variant="filled" severity="error" className="error">
+        <Alert
+          variant="filled"
+          severity="error"
+          className="error"
+          onClose={() => setError(null)}
+        >
           {error}
         </Alert>
       )}
