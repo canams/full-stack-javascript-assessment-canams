@@ -31,7 +31,10 @@ export default function SignIn({ open, setOpen }: SignInProps) {
   const [error, setError] = useState<string | null>(null)
   const navigate = useNavigate()
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    event.preventDefault()
     if (email && password) {
       try {
         await signIn(email, password)
