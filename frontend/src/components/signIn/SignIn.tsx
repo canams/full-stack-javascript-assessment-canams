@@ -67,27 +67,26 @@ export default function SignIn({ open, setOpen }: SignInProps) {
           <Typography id="modal-title" variant="h6" component="h2">
             Sign in
           </Typography>
-          <FormControl>
-            <FormLabel htmlFor="email">Email</FormLabel>
-            <TextField
-              required
-              id="email"
-              type="email"
-              variant="standard"
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <FormLabel htmlFor="password">Password</FormLabel>
-            <TextField
-              required
-              id="password"
-              variant="standard"
-              type="password"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <Button type="submit" onClick={handleSubmit} className="signin-btn">
-              Sign In
-            </Button>
-          </FormControl>
+          <TextField
+            required
+            id="email"
+            type="email"
+            placeholder="Email"
+            variant="standard"
+            className="form-input"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <TextField
+            required
+            id="password"
+            variant="standard"
+            placeholder="Password"
+            type="password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <Button onClick={handleSubmit} className="signin-btn">
+            Sign In
+          </Button>
         </Box>
       </Modal>
     </div>
